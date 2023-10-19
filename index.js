@@ -9,7 +9,7 @@ const urlRoute=require("./routes/url")
 const staticRoute=require("./routes/staticRoute")
 const userRoute = require("./routes/user")
 
-const {restrictToLoggedInUser} = require("./middlewares/auth")
+const {restrictToLoggedInUser,handleSimpleAuthNoRestrict} = require("./middlewares/auth")
 
 const app=express();
 
@@ -30,7 +30,7 @@ app.set("views",path.resolve("./views"));
 //routes
 app.use("/url",restrictToLoggedInUser, urlRoute);
 app.use("/user",userRoute);
-app.use("/",staticRoute);
+app.use("/",handleSimpleAuthNoRestrict,staticRoute);
 
 
 

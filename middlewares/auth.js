@@ -8,7 +8,16 @@ async function restrictToLoggedInUser(req,res,next){
     req.user=user;
     next();
 }
+async function handleSimpleAuthNoRestrict(req,res,next){
+    const uid=req.cookies.uuid;
+   
+    const user = getUser(uid);
+    
+    req.user=user;
+    next();
+}
 
 module.exports={
     restrictToLoggedInUser,
+    handleSimpleAuthNoRestrict,
 }
