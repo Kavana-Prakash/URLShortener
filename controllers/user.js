@@ -17,9 +17,9 @@ async function handleUserLogin(req, res){
     });
     if(!user) return res.render("login",{error:"Invalid credentials"})
      
-    const token=setUser(user);
-    res.cookie("utoken",token);
-    return res.redirect("/")
+    const token = setUser(user);
+    
+    return res.json({token})
 }
 
 
